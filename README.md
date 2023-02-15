@@ -1,0 +1,2 @@
+# htaccess
+ .htaccess file (php)
