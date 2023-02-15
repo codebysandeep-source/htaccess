@@ -1,0 +1,35 @@
+#===== 1 =====# 
+#Start
+RewriteEngine On
+
+#===== 2 =====# 
+#your project folder name
+RewriteBase /learn_htaccess/
+
+#===== 3 =====# 
+#if I am typing   localhost/learn_htaccess/demo.php   
+#then demo page will not open it will only open index.php which you written RewriteRule command that will load,
+#for opening different link or page we will use these command - 
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+#where Cond stand for Condition. f stand for file. d stand for directory(folder).    
+#"RewriteCond %{REQUEST_FILENAME} !-f"   this condition check file  e.g., if "localhost/learn_htaccess/demo.php" is exist then it will load demo.php else redirect to index.php
+#RewriteCond %{REQUEST_FILENAME} !-d    this condition check folder e.g., if "localhost/learn_htaccess/images/food.png"  is exist then it will load san.png else redirect to index.php
+
+#===== 4 =====# 
+#if user type in url something else (there will no show any error)
+#e.g, localhost/learn_htaccess/dsjfdjg/gfdg/fssdf
+#we use this RewriteRule
+
+RewriteRule ^(.*)$ index.php?url=$1 [QSA,L]              
+
+#where ^(.*)$ is a regular expression (rx)
+#in rx,  ^ is a start and $ is a end of regular expression and  () it means we are using more than one character and . it means any character and * it means  character can be zero or more.
+#[QSA,L] means [Query String Append, Location]
+#if RewriteRule index.php then it will redirect to index.php
+#if RewriteRule demo.php then it will redirect to demo.php
+#using RewriteRule we can change file name which file should be show in home page.
+
+
